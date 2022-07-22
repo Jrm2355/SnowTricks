@@ -15,3 +15,8 @@ SnowTricks est un site internet présentant des figures de snow.
 
 docker-compose up -d
 symfony serve -d
+
+
+#### Lancer un test
+
+php bin/phpunit --testdox
