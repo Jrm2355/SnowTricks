@@ -13,6 +13,9 @@ SnowTricks est un site internet présentant des figures de snow.
 
 ### Lancer environnement de développment
 
+composer install
+npm install
+npm run build
 docker-compose up -d
 symfony serve -d
 
