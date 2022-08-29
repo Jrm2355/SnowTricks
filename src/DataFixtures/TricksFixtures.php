@@ -11,7 +11,6 @@ use App\Entity\Comment;
 use App\Entity\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Constraints\Cascade;
-use DateTimeInterface;
 use DateTime;
 
 class TricksFixtures extends Fixture
