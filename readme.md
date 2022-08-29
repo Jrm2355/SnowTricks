@@ -17,8 +17,11 @@ composer install
 npm install
 npm run build
 docker-compose up -d
-symfony serve -d
+symfony server:start -d
 
+#### Charger les fixtures
+
+php bin/console doctrine:fixtures:load
 
 #### Lancer un test
 
