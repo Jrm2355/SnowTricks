@@ -23,4 +23,9 @@ symfony server:start -d
 
 php bin/console doctrine:fixtures:load
 
+#### GIT
+
+git checkout [branche] // changer de branche
+git branch -d [branche] // supprimer la branche en local
+
 #### Lancer un test
