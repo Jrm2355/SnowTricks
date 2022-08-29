@@ -17,7 +17,7 @@ composer install
 npm install
 npm run build
 docker-compose up -d
-symfony serve -d
+symfony server:start -d
 
 
 #### Lancer un test

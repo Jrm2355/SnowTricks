@@ -12,10 +12,10 @@ class UserUnitTest extends TestCase
         $user = new User();
 
         $user->setEmail('true@test.com')
-             ->setPassword('password')
-             ->setFirstname('firstname')
-             ->setLastname('lastname')
-             ->setPicture('picture');
+            ->setPassword('password')
+            ->setFirstname('firstname')
+            ->setLastname('lastname')
+            ->setPicture('picture');
         
         $this->assertTrue($user->getEmail() === 'true@test.com');
         $this->assertTrue($user->getPassword() === 'password');
