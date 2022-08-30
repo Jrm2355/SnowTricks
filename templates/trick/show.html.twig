@@ -22,6 +22,10 @@
         </tbody>
     </table>
 
+    {% for comment in comments %}
+        {{ comment.content }}
+    {% endfor %}
+
     <a href="{{ path('app_trick_index') }}">back to list</a>
 
     <a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a>

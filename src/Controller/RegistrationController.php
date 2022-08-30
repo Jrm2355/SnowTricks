@@ -32,6 +32,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setPicture('test');
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();

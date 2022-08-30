@@ -3,11 +3,16 @@
 {% block title %}Edit Trick{% endblock %}
 
 {% block body %}
-    <h1>Edit Trick</h1>
+    {% if is_granted('ROLE_USER') %}
+        <h1>Edit Trick</h1>
 
-    {{ include('trick/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('trick/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_trick_index') }}">back to list</a>
+        <a href="{{ path('app_trick_index') }}">back to list</a>
 
-    {{ include('trick/_delete_form.html.twig') }}
+        {{ include('trick/_delete_form.html.twig') }}
+
+    {% else %}
+        <h1>Vous devez être connecter pour accéder à cette page</h1>
+    {% endif %}
 {% endblock %}

@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}New Trick{% endblock %}
-
 {% block body %}
-    <h1>Create new Trick</h1>
+    {% if is_granted('ROLE_USER') %}
+            <h1>Create new Trick</h1>
 
-    {{ include('trick/_form.html.twig') }}
+            {{ include('trick/_form.html.twig') }}
 
-    <a href="{{ path('app_trick_index') }}">back to list</a>
+            <a href="{{ path('app_trick_index') }}">back to list</a>
+
+    {% else %}
+        <h1>Vous devez être connecter pour accéder à cette page</h1>
+
+    {% endif %}
 {% endblock %}
