@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
+use App\Entity\Comment;
 use App\Form\TrickType;
+use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use Doctrine\ORM\Mapping\Id;
@@ -42,12 +44,23 @@ class TrickController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_trick_show', methods: ['GET'])]
-    public function show(Trick $trick, CommentRepository $commentRepository): Response
+    #[Route('/{id}', name: 'app_trick_show', methods: ['GET', 'POST'])]
+    public function show(Request $request, Trick $trick, CommentRepository $commentRepository): Response
     {
+        $comment = new Comment();
+        $comment_form = $this->createForm(CommentType::class, $comment);
+        $comment_form->handleRequest($request);
+
+        if ($comment_form->isSubmitted() && $comment_form->isValid()) {
+            $trick->addComment($comment);
+            $commentRepository->add($comment);
+
+            return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
-            'comments' => $commentRepository->findByTrickId($trick->getId()),
+            'comment_form' => $comment_form->createView(),
         ]);
     }
 

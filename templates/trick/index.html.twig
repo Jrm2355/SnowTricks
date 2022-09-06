@@ -5,6 +5,17 @@
 {% block body %}
     <h1>Trick index</h1>
 
+    <div class="container-tricks">
+        {% for trick in tricks %}
+            <div class="card">
+            <img class="card-img-top" src="../images/beach.png" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{trick.name}}</h5>
+            </div>
+        </div>    
+        {% endfor %}
+    </div<
+
     <table class="table">
         <thead>
             <tr>

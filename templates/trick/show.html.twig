@@ -22,7 +22,7 @@
         </tbody>
     </table>
 
-    {% for comment in comments %}
+    {% for comment in trick.comments %}
         {{ comment.content }}
     {% endfor %}
 
@@ -31,4 +31,9 @@
     <a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a>
 
     {{ include('trick/_delete_form.html.twig') }}
+
+    <h2>Ajouter votre commentaire</h2>
+
+    {{ include('trick/_comment_form.html.twig') }}
+
 {% endblock %}
