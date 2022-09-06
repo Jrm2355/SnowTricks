@@ -10,19 +10,3 @@
 .valid-feedback{
     color: #2acc80;
 }
-
-.container-tricks {
-    background: gray;
-    width: 100%;
-    height: 500px; /* height given for illustration */
-    display: flex;
-    flex-flow: row wrap;
-    position: relative;
-    justify-content: space-around;
-    column-gap: 20px;
-}
-
-.card{
-    width: 15rem;
-    flex: 0 1 calc(18% - 2px);
-}
