@@ -3,6 +3,10 @@
 {% block title %}Trick index{% endblock %}
 
 {% block body %}
+    <div class="container-fluid p-0 pb-5 wow fadeIn" data-wow-delay="0.1s">
+            <img class="img-fluid" src="img/home.jpg" alt="">       
+    </div>
+
     <h1>Trick index</h1>
 
     <div class="album-tricks py-5 bg-light">
@@ -30,36 +34,7 @@
         </div>
     </div>
 
-
-
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for trick in tricks %}
-            <tr>
-                <td>{{ trick.id }}</td>
-                <td>{{ trick.name }}</td>
-                <td>{{ trick.description }}</td>
-                <td>
-                    <a href="{{ path('app_trick_show', {'id': trick.id}) }}">show</a>
-                    <a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     {% if app.user %}
         <a href="{{ path('app_trick_new') }}">Create new</a>
