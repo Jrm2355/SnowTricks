@@ -4,43 +4,67 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Entity\Comment;
+use App\Entity\Media;
 use App\Form\TrickType;
 use App\Form\CommentType;
-use App\Repository\CommentRepository;
+use App\Form\MediaType;
 use App\Repository\TrickRepository;
+use App\Repository\CommentRepository;
+use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/trick')]
+#[Route('/')]
 class TrickController extends AbstractController
 {
     #[Route('/', name: 'app_trick_index', methods: ['GET'])]
     public function index(TrickRepository $trickRepository): Response
     {
+        $tricks = $trickRepository->findAll();
+        
         return $this->render('trick/index.html.twig', [
-            'tricks' => $trickRepository->findAll(),
+            'tricks' => $tricks,
         ]);
     }
 
     #[Route('/new', name: 'app_trick_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TrickRepository $trickRepository): Response
+    public function new(Request $request, TrickRepository $trickRepository, MediaRepository $mediaRepository): Response
     {
         $trick = new Trick();
-        $form = $this->createForm(TrickType::class, $trick);
-        $form->handleRequest($request);
+        $trick_form = $this->createForm(TrickType::class, $trick);
+        $trick_form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($trick_form->isSubmitted() && $trick_form->isValid()) {
+            $mediaPhoto = $trick_form->get('media')->getData();
             $trickRepository->add($trick, true);
+            foreach ($mediaPhoto as $medium) {
+                // On génère un nouveau nom de fichier 
+                $fichier = md5(uniqid()).'.'.$medium->getExtension();
+                // On copie le fichier dans le dossier uploads 
+                $medium->move( $this->getParameter('media_directory'), $fichier ); 
+                // On crée l'image dans la base de données 
+                $newMedia = new Media(); 
+                $newMedia->setSource($fichier); 
+                $newMedia->setType('picture');
+                $newMedia->setTrick($trick);
+                $mediaRepository->add($newMedia, true);
+            }
+            $mediaVideoPath = $trick_form->get('mediaVideo')->getData();
+            $newMediaVideo = new Media();
+            $newMediaVideo->setSource($mediaVideoPath); 
+            $newMediaVideo->setType('video');
+            $newMediaVideo->setTrick($trick);
+            $mediaRepository->add($newMediaVideo, true);      
 
             return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('trick/new.html.twig', [
             'trick' => $trick,
-            'form' => $form,
+            'trick_form' => $trick_form,
         ]);
     }
 
@@ -52,10 +76,10 @@ class TrickController extends AbstractController
         $comment_form->handleRequest($request);
 
         if ($comment_form->isSubmitted() && $comment_form->isValid()) {
-            $trick->addComment($comment);
-            $commentRepository->add($comment);
-
-            return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
+            $comment->setTrick($trick);
+            $comment->setDateCreation(new \DateTime());
+            $comment->setUser($this->getUser());
+            $commentRepository->add($comment, true);
         }
 
         return $this->render('trick/show.html.twig', [
@@ -65,20 +89,39 @@ class TrickController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_trick_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Trick $trick, TrickRepository $trickRepository): Response
+    public function edit(Request $request, Trick $trick, TrickRepository $trickRepository, MediaRepository $mediaRepository): Response
     {
-        $form = $this->createForm(TrickType::class, $trick);
-        $form->handleRequest($request);
+        $trick_form = $this->createForm(TrickType::class, $trick);
+        $trick_form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($trick_form->isSubmitted() && $trick_form->isValid()) {
+            $mediaPhoto = $trick_form->get('media')->getData();
             $trickRepository->add($trick, true);
+            foreach ($mediaPhoto as $medium) {
+                // On génère un nouveau nom de fichier 
+                $fichier = md5(uniqid()).'.'.$medium->getExtension();
+                // On copie le fichier dans le dossier uploads 
+                $medium->move( $this->getParameter('media_directory'), $fichier ); 
+                // On crée l'image dans la base de données 
+                $newMedia = new Media(); 
+                $newMedia->setSource($fichier); 
+                $newMedia->setType('picture');
+                $newMedia->setTrick($trick);
+                $mediaRepository->add($newMedia, true);
+            }
+            $mediaVideoPath = $trick_form->get('mediaVideo')->getData();
+            $newMediaVideo = new Media();
+            $newMediaVideo->setSource($mediaVideoPath); 
+            $newMediaVideo->setType('video');
+            $newMediaVideo->setTrick($trick);
+            $mediaRepository->add($newMediaVideo, true);      
 
             return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('trick/edit.html.twig', [
             'trick' => $trick,
-            'form' => $form,
+            'trick_form' => $trick_form,
         ]);
     }
 

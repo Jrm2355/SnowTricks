@@ -16,12 +16,15 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $source = null;
 
-    #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\ManyToOne(inversedBy: 'media')] // symfopny error => cascade:"persist"
     #[ORM\JoinColumn(nullable: false)]
     private ?Trick $trick = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
+
+    #[ORM\Column]
+    private ?bool $main = null;
 
     public function getId(): ?int
     {
@@ -60,6 +63,18 @@ class Media
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function isMain(): ?bool
+    {
+        return $this->main;
+    }
+
+    public function setMain(bool $main): self
+    {
+        $this->main = $main;
 
         return $this;
     }

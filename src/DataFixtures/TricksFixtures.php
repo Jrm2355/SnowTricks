@@ -41,8 +41,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre frontside de la planche entre les deux pieds avec la main avant",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/mute.png",
+                                    "source"=>"/img/media/mute.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -51,8 +52,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre backside de la planche, entre les deux pieds, avec la main avant",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/sad.png",
+                                    "source"=>"/img/media/sad.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -61,8 +63,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/indy.png",
+                                    "source"=>"/img/media/indy.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -71,8 +74,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre backside de la planche entre les deux pieds avec la main arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/stalefish.png",
+                                    "source"=>"/img/media/stalefish.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -97,8 +101,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la partie arrière de la planche, avec la main arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/tailgrabe.png",
+                                    "source"=>"/img/media/tailgrabe.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],  
@@ -112,8 +117,9 @@ class TricksFixtures extends Fixture
                             "description"=>"un 180 désigne un demi-tour, soit 180 degrés d'angle",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/180.png",
+                                    "source"=>"/img/media/180.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -122,8 +128,9 @@ class TricksFixtures extends Fixture
                             "description"=>"360, trois six pour un tour complet",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/360.png",
+                                    "source"=>"/img/media/360.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ]
@@ -148,8 +155,9 @@ class TricksFixtures extends Fixture
                             "description"=>"front flips, rotations en avant",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/frontflip.png",
+                                    "source"=>"/img/media/frontflip.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -158,8 +166,9 @@ class TricksFixtures extends Fixture
                             "description"=>"les back flips, rotations en arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/backflip.png",
+                                    "source"=>"/img/media/backflip.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -173,8 +182,9 @@ class TricksFixtures extends Fixture
                             "description"=>"nose slide, c'est-à-dire l'avant de la planche sur la barre",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/noseslide.png",
+                                    "source"=>"/img/media/noseslide.png",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ]
@@ -216,6 +226,7 @@ class TricksFixtures extends Fixture
                         $media = new Media();
                         $media->setSource($m["source"]);
                         $media->setType($m["type"]);
+                        $media->setMain($m["main"]);
                         $media->setTrick($trick);
                         $manager->persist($media);
                     }
