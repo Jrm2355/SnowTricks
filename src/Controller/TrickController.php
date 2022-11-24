@@ -39,10 +39,11 @@ class TrickController extends AbstractController
 
         if ($trick_form->isSubmitted() && $trick_form->isValid()) {
             $mediaPhoto = $trick_form->get('media')->getData();
+            $trick->setUser($this->getUser());
             $trickRepository->add($trick, true);
             foreach ($mediaPhoto as $medium) {
                 // On génère un nouveau nom de fichier 
-                $fichier = md5(uniqid()).'.'.$medium->getExtension();
+                $fichier = '/img/media/'.md5(uniqid()).'.'.'jpg';
                 // On copie le fichier dans le dossier uploads 
                 $medium->move( $this->getParameter('media_directory'), $fichier ); 
                 // On crée l'image dans la base de données 
@@ -50,14 +51,18 @@ class TrickController extends AbstractController
                 $newMedia->setSource($fichier); 
                 $newMedia->setType('picture');
                 $newMedia->setTrick($trick);
+                $newMedia->setMain(true);
                 $mediaRepository->add($newMedia, true);
             }
             $mediaVideoPath = $trick_form->get('mediaVideo')->getData();
-            $newMediaVideo = new Media();
-            $newMediaVideo->setSource($mediaVideoPath); 
-            $newMediaVideo->setType('video');
-            $newMediaVideo->setTrick($trick);
-            $mediaRepository->add($newMediaVideo, true);      
+            if($mediaVideoPath !== null) {
+                $newMediaVideo = new Media();
+                $newMediaVideo->setSource($mediaVideoPath); 
+                $newMediaVideo->setType('video');
+                $newMediaVideo->setTrick($trick);
+                $newMediaVideo->setMain(false);
+                $mediaRepository->add($newMediaVideo, true); 
+            }
 
             return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -95,27 +100,7 @@ class TrickController extends AbstractController
         $trick_form->handleRequest($request);
 
         if ($trick_form->isSubmitted() && $trick_form->isValid()) {
-            $mediaPhoto = $trick_form->get('media')->getData();
             $trickRepository->add($trick, true);
-            foreach ($mediaPhoto as $medium) {
-                // On génère un nouveau nom de fichier 
-                $fichier = md5(uniqid()).'.'.$medium->getExtension();
-                // On copie le fichier dans le dossier uploads 
-                $medium->move( $this->getParameter('media_directory'), $fichier ); 
-                // On crée l'image dans la base de données 
-                $newMedia = new Media(); 
-                $newMedia->setSource($fichier); 
-                $newMedia->setType('picture');
-                $newMedia->setTrick($trick);
-                $mediaRepository->add($newMedia, true);
-            }
-            $mediaVideoPath = $trick_form->get('mediaVideo')->getData();
-            $newMediaVideo = new Media();
-            $newMediaVideo->setSource($mediaVideoPath); 
-            $newMediaVideo->setType('video');
-            $newMediaVideo->setTrick($trick);
-            $mediaRepository->add($newMediaVideo, true);      
-
             return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -125,13 +110,11 @@ class TrickController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_trick_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_trick_delete')]
     public function delete(Request $request, Trick $trick, TrickRepository $trickRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$trick->getId(), $request->request->get('_token'))) {
-            $trickRepository->remove($trick, true);
-        }
-
-        return $this->redirectToRoute('app_trick_index', [], Response::HTTP_SEE_OTHER);
+        $trickRepository->remove($trick, true);
+        $this->addFlash('success', 'La tâche a bien été supprimée.');
+        return $this->redirectToRoute('app_trick_index');
     }
 }

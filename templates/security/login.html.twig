@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Login!{% endblock %}
 
 {% block body %}
     <div class="row">
@@ -19,7 +19,7 @@
                         </div>
                     {% endif %}
 
-                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                    <h1 class="h3 mb-3 fw-normal">Renseignez vos informations</h1>
                     <div class="form-floating">
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                         <label for="floatingInput">Email address</label>
@@ -30,7 +30,7 @@
                     </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <button class="btn btn-lg btn-primary" type="submit">
-                        Sign in
+                        Se connecter
                     </button>
                 </form>
             </div>

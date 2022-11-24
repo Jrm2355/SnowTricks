@@ -6,43 +6,20 @@
     <div class="col-md-12 text-center">
         <h1>Inscription</h1>
     </div>
-    {# <div class="form-floating">
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="floatingInput">Email address</label>
-    </div> #}
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4 text-center">
             <div class="form-signin w-100 m-auto">
                 {{ form_start(registrationForm) }}
-                    {% if form_errors(registrationForm) %}
-                        <div class="alert alert-danger">
-                            {{ form_errors(registrationForm) }}
-                        </div>
-                    {% endif %}
-                    <div class="form-floating">
-                        {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email'}})  }}
-                    </div>
-                    <div class="form-floating">
-                        {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}})}}
-                    </div>
-                    <div class="form-floating">
-                        {{ form_widget(registrationForm.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
-                    </div>
-                    <div class="form-floating">
-                        {{ form_widget(registrationForm.firstname, {'attr': {'placeholder': 'Prénom'}}) }}
-                    </div>
-                    <div class="form-floating">
-                        {{ form_widget(registrationForm.lastname, {'attr': {'placeholder': 'Nom'}}) }}
-                    </div>
-                    <div class="form-floating">
-                        {{ form_widget(registrationForm.agreeTerms) }}
-                    </div>                        
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        <button class="btn btn-lg btn-primary" type="submit">
-                        Sign in
-                    </button>
+                    {{ form_widget(registrationForm) }}
+                    <button class="btn btn-success">{{ button_label|default('Valider') }}</button>
                 {{ form_end(registrationForm) }}
             </div>
+        </div>
+    </div>
+</div>       
+
         </div>
     </div>
 {% endblock %}

@@ -18,16 +18,9 @@ class TrickType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('user')
             ->add('category')
-            // ->add('media', FileType::class,[ 'label' => false, 'multiple' => true, 'mapped' => false, 'required' => false ])
-            // ->add('mediaVideo', TextType::class,[ 'label' => false, 'mapped' => false, 'required' => false ])
-            ->add('media', CollectionType::class, [
-                'entry_type' => MediaType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-            ]);
+            ->add('media', FileType::class,[ 'label' => false, 'multiple' => true, 'mapped' => false, 'required' => false ])
+            ->add('mediaVideo', TextType::class,[ 'label' => false, 'mapped' => false, 'required' => false ])
         ;
     }
 

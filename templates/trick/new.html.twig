@@ -4,12 +4,14 @@
 {% block body %}
     {% if is_granted('ROLE_USER') %}
         <div class="row">
-            <div class="col-md-12 text-center">
-                <h1>Create new Trick</h1>
+            <div class="col-md-4 text-center">
+            </div>
+            <div class="col-md-4 text-center">
+                <h1>Créer un nouveau Trick !</h1>
 
-            {{ include('trick/_trick_form.html.twig') }}
-
-            <a href="{{ path('app_trick_index') }}">back to list</a>
+                {{ include('trick/_trick_form.html.twig') }}
+                <br>
+                <a href="{{ path('app_trick_index') }}" class="btn btn-primary btn-lg active" role="button" title="Lien 1">Retour à la liste</a>
             </div>
         </div>
 

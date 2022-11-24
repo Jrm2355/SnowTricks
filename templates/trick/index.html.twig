@@ -36,6 +36,12 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     {% if app.user %}
-        <a href="{{ path('app_trick_new') }}">Create new</a>
+        <div class="row">
+            <div class="col-md-4 text-center">
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="{{ path('app_trick_new') }}" class="btn btn-primary btn-lg active" role="button" title="Lien 1">Ajouter un Trick !</a>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}
