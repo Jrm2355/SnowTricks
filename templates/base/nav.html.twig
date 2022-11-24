@@ -10,11 +10,11 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ path('app_trick_index') }}" class="nav-item nav-link">Tricks</a>
                 {% if not app.user %}
-                    <a href="{{ path('app_login') }}" class="nav-item nav-link">Se Connecter</a>
+                    <a href="{{ path('app_login') }}" class="nav-item nav-link">Se connecter</a>
                     <a href="{{ path('app_register') }}" class="nav-item nav-link">S'inscrire</a>
                 {% endif %}
                 {% if app.user %}
-                    <a href="{{ path('app_logout') }}" class="nav-item nav-link">Sign out</a>
+                    <a href="{{ path('app_logout') }}" class="nav-item nav-link">Se déconnecter</a>
                 {% endif %}
             </div>
         </div>

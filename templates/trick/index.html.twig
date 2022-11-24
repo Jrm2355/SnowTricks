@@ -13,18 +13,13 @@
                 {% for trick in tricks %}
                     <div class="col-md-3">
                         <div class="card mb-3 shadow-sm">
-                            {% for media in trick.media %}
-                                {% if media.main == true %}
-                                    <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src={{ media.source }} data-holder-rendered="true">
-                                {% endif %}
-                            {% endfor %}
+                            <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src={{ trick.media[0].source }} data-holder-rendered="true">
                             <div class="card-body">
                                 <p class="card-text">
-                                    {{ trick.name }}
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_show', {'id': trick.id}) }}">show</a></button>
+                                    <a href="{{ path('app_trick_show', {'id': trick.id}) }}">{{ trick.name }}</a>
                                     <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a></button>
-                                </p>
-                                        
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_delete', {'id': trick.id}) }}">Supprimer</a></button>
+                                </p>                                        
                             </div>
                         </div>
                     </div>

@@ -16,11 +16,11 @@ class TrickType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class, ['label' => 'Nom du trick'])
             ->add('description')
             ->add('category')
-            ->add('media', FileType::class,[ 'label' => false, 'multiple' => true, 'mapped' => false, 'required' => false ])
-            ->add('mediaVideo', TextType::class,[ 'label' => false, 'mapped' => false, 'required' => false ])
+            ->add('media', FileType::class,[ 'label' => 'Charger vos photos jpg', 'multiple' => true, 'mapped' => false, 'required' => false ])
+            ->add('mediaVideo', TextType::class,[ 'label' => 'Donnez le lien url de la video', 'mapped' => false, 'required' => false ])
         ;
     }
 
