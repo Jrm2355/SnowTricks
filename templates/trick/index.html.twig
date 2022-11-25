@@ -17,8 +17,10 @@
                             <div class="card-body">
                                 <p class="card-text">
                                     <a href="{{ path('app_trick_show', {'id': trick.id}) }}">{{ trick.name }}</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a></button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_delete', {'id': trick.id}) }}">Supprimer</a></button>
+                                    {% if app.user %}
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a></button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_delete', {'id': trick.id}) }}">Supprimer</a></button>
+                                    {% endif %}
                                 </p>                                        
                             </div>
                         </div>

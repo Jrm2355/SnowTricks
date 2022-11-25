@@ -21,18 +21,19 @@
 
                     <h1 class="h3 mb-3 fw-normal">Renseignez vos informations</h1>
                     <div class="form-floating">
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                        <input style ="margin : 10px" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                         <label for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                        <input style ="margin : 10px" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
                         <label for="floatingPassword">Password</label>
                     </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        <button class="btn btn-lg btn-primary" type="submit">
+                        <button style ="margin : 10px" class="btn btn-lg btn-primary" type="submit">
                         Se connecter
                     </button>
                 </form>
+                <a href="{{ path('app_forgot_password_request') }}" style ="margin : 10px" class="btn btn-primary btn-lg active" role="button" title="Reset password">Mot de passe oublié</a>
             </div>
         </div>
     </div>

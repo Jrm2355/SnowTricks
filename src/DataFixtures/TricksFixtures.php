@@ -45,6 +45,11 @@ class TricksFixtures extends Fixture
                                     "type"=>"picture",
                                     "main"=>true,
                                 ],
+                                [
+                                    "source"=>"https://www.youtube.com/embed/8N_M9wq8BF8",
+                                    "type"=>"video",
+                                    "main"=>false,
+                                ],
                             ],
                         ],
                         [
@@ -77,6 +82,11 @@ class TricksFixtures extends Fixture
                                     "source"=>"/img/media/stalefish.jpg",
                                     "type"=>"picture",
                                     "main"=>true,
+                                ],
+                                [
+                                    "source"=>"https://www.youtube.com/embed/8KotvBY28Mo",
+                                    "type"=>"video",
+                                    "main"=>false,
                                 ],
                             ],
                         ],
@@ -227,7 +237,7 @@ class TricksFixtures extends Fixture
                     }
 
                     $comment = new Comment();
-                    $comment->setContent("Mon premier commentaire");
+                    $comment->setContent("Je suis le premier à poster un message ici.");
                     $comment->setUser($user);
                     $comment->setTrick($trick);
                     $date = new DateTime();

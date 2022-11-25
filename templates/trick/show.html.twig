@@ -79,10 +79,12 @@
         <HR NOSHADE>
         </p>
     {% endfor %}
-
+        
     <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a></button>
+        {% if app.user %}
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a></button>
+            {{ include('trick/_delete_form.html.twig') }}
     </div>
+        {% endif %}
 
-    {{ include('trick/_delete_form.html.twig') }}
 {% endblock %}
