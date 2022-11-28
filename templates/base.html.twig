@@ -20,6 +20,17 @@
 
     </head>
     <body>
+        {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success" role="alert">
+                            <strong>Superbe !</strong> {{ flash_message }}
+                        </div>
+                    {% endfor %}
+
+                    {% for flash_message in app.session.flashBag.get('error') %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oops !</strong> {{ flash_message }}
+                        </div>
+                    {% endfor %}
         {% include 'base/nav.html.twig' %}
         {% block body %}
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

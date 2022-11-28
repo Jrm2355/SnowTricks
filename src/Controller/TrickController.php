@@ -21,12 +21,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends AbstractController
 {
     #[Route('/', name: 'app_trick_index', methods: ['GET'])]
-    public function index(TrickRepository $trickRepository): Response
+    public function index(TrickRepository $trickRepository, Request $request): Response
     {
-        $tricks = $trickRepository->findAll();
-        
+        $page = $request->get('page', 1);
+        // $tricks = $trickRepository->findAll();
+        $tricks = $trickRepository->findBy([], [], 8 + (4 * ($page - 1)),0);
         return $this->render('trick/index.html.twig', [
             'tricks' => $tricks,
+            'page' => $page,
         ]);
     }
 

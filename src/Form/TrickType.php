@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TrickType extends AbstractType
 {
@@ -17,10 +18,10 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['label' => 'Nom du trick'])
-            ->add('description')
+            ->add('description', TextareaType::class, ['label' => 'Description'])
             ->add('category')
-            ->add('media', FileType::class,[ 'label' => 'Charger vos photos jpg', 'multiple' => true, 'mapped' => false, 'required' => false ])
-            ->add('mediaVideo', TextType::class,[ 'label' => 'Donnez le lien url de la video', 'mapped' => false, 'required' => false ])
+            ->add('media', FileType::class,[ 'label' => 'Charger vos photos jpg', 'multiple' => true, 'mapped' => false, 'required' => true ])
+            ->add('mediaVideo', TextAreaType::class,[ 'label' => 'Donnez le lien url de la video', 'mapped' => false, 'required' => false ])
         ;
     }
 
