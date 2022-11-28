@@ -28,7 +28,7 @@ class Trick
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Media::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Media::class, orphanRemoval: false)]
     private Collection $media;
 
     #[ORM\ManyToOne(inversedBy: 'tricks')]

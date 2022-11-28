@@ -39,6 +39,18 @@ class CommentRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByTrickId($value): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.trick_id = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.date_creation', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Comment[] Returns an array of Comment objects
 //     */

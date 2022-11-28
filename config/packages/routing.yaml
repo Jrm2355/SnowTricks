@@ -9,4 +9,5 @@ framework:
 when@prod:
     framework:
         router:
+            default_uri: "/"
             strict_requirements: null

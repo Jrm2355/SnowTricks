@@ -30,7 +30,7 @@ class TricksFixtures extends Fixture
             "username"=>"Jyon",
             "email"=>"jeremyon.jy@gmail.com",
             "password"=>"adminpassword",
-            "picture"=>"img/icons/team-1.png",
+            "picture"=>"img/icons/team-1.jpg",
             "roles"=>['ROLE_ADMIN', 'ROLE_USER'],
             "category"=>[
                 [
@@ -41,8 +41,14 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre frontside de la planche entre les deux pieds avec la main avant",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/mute.png",
+                                    "source"=>"/img/media/mute.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
+                                ],
+                                [
+                                    "source"=>"https://www.youtube.com/embed/8N_M9wq8BF8",
+                                    "type"=>"video",
+                                    "main"=>false,
                                 ],
                             ],
                         ],
@@ -51,8 +57,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre backside de la planche, entre les deux pieds, avec la main avant",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/sad.png",
+                                    "source"=>"/img/media/sad.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -61,8 +68,9 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/indy.png",
+                                    "source"=>"/img/media/indy.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -71,9 +79,26 @@ class TricksFixtures extends Fixture
                             "description"=>"saisie de la carre backside de la planche entre les deux pieds avec la main arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/stalefish.png",
+                                    "source"=>"/img/media/stalefish.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
+                                [
+                                    "source"=>"https://www.youtube.com/embed/8KotvBY28Mo",
+                                    "type"=>"video",
+                                    "main"=>false,
+                                ],
+                            ],
+                        ],
+                        [
+                            "name"=>"tail grab",
+                            "description"=>"saisie de la partie arrière de la planche, avec la main arrière",
+                            "media"=>[
+                                [
+                                    "source"=>"/img/media/tailgrabe.jpg",
+                                    "type"=>"picture",
+                                    "main"=>true,
+                                ]
                             ],
                         ],
                     ],                
@@ -86,24 +111,9 @@ class TricksFixtures extends Fixture
             "username"=>"SWhite",
             "email"=>"shaun.white@gmail.com",
             "password"=>"userpassword",
-            "picture"=>"img/icons/team-2.png",
+            "picture"=>"img/icons/team-2.jpg",
             "roles"=>['ROLE_USER'],
             "category"=>[
-                [
-                    "name"=>"grab",
-                    "tricks"=>[
-                        [
-                            "name"=>"tail grab",
-                            "description"=>"saisie de la partie arrière de la planche, avec la main arrière",
-                            "media"=>[
-                                [
-                                    "source"=>"img/media/tailgrabe.png",
-                                    "type"=>"picture",
-                                ],
-                            ],
-                        ],  
-                    ],                
-                ],
                 [
                     "name"=>"rotation",
                     "tricks"=>[
@@ -112,8 +122,9 @@ class TricksFixtures extends Fixture
                             "description"=>"un 180 désigne un demi-tour, soit 180 degrés d'angle",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/180.png",
+                                    "source"=>"/img/media/180.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -122,8 +133,9 @@ class TricksFixtures extends Fixture
                             "description"=>"360, trois six pour un tour complet",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/360.png",
+                                    "source"=>"/img/media/360.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ]
@@ -137,7 +149,7 @@ class TricksFixtures extends Fixture
             "username"=>"THawk",
             "email"=>"tony.hawk@gmail.com",
             "password"=>"userpassword",
-            "picture"=>"img/icons/team-3.png",
+            "picture"=>"img/icons/team-3.jpg",
             "roles"=>['ROLE_USER'],
             "category"=>[
                 [
@@ -148,8 +160,9 @@ class TricksFixtures extends Fixture
                             "description"=>"front flips, rotations en avant",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/frontflip.png",
+                                    "source"=>"/img/media/frontflip.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -158,8 +171,9 @@ class TricksFixtures extends Fixture
                             "description"=>"les back flips, rotations en arrière",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/backflip.png",
+                                    "source"=>"/img/media/backflip.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ],
@@ -173,8 +187,9 @@ class TricksFixtures extends Fixture
                             "description"=>"nose slide, c'est-à-dire l'avant de la planche sur la barre",
                             "media"=>[
                                 [
-                                    "source"=>"img/media/noseslide.png",
+                                    "source"=>"/img/media/noseslide.jpg",
                                     "type"=>"picture",
+                                    "main"=>true,
                                 ],
                             ],
                         ]
@@ -216,12 +231,13 @@ class TricksFixtures extends Fixture
                         $media = new Media();
                         $media->setSource($m["source"]);
                         $media->setType($m["type"]);
+                        $media->setMain($m["main"]);
                         $media->setTrick($trick);
                         $manager->persist($media);
                     }
 
                     $comment = new Comment();
-                    $comment->setContent("Mon premier commentaire");
+                    $comment->setContent("Je suis le premier à poster un message ici.");
                     $comment->setUser($user);
                     $comment->setTrick($trick);
                     $date = new DateTime();
