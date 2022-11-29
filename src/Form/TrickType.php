@@ -21,7 +21,7 @@ class TrickType extends AbstractType
             ->add('description', TextareaType::class, ['label' => 'Description'])
             ->add('category')
             ->add('media', FileType::class,[ 'label' => 'Charger vos photos jpg', 'multiple' => true, 'mapped' => false, 'required' => true ])
-            ->add('mediaVideo', TextAreaType::class,[ 'label' => 'Donnez le lien url de la video', 'mapped' => false, 'required' => false ])
+            ->add('mediaVideo', TextAreaType::class,[ 'label' => 'Donnez le lien url de la video. Une vidéo par ligne', 'mapped' => false, 'required' => false ])
         ;
     }
 

@@ -62,14 +62,18 @@ class TrickController extends AbstractController
                 }
                 $mediaRepository->add($newMedia, true);
             }
-            $mediaVideoPath = $trick_form->get('mediaVideo')->getData();
-            if($mediaVideoPath !== null) {
-                $newMediaVideo = new Media();
-                $newMediaVideo->setSource($mediaVideoPath); 
-                $newMediaVideo->setType('video');
-                $newMediaVideo->setTrick($trick);
-                $newMediaVideo->setMain(false);
-                $mediaRepository->add($newMediaVideo, true); 
+            $mediaVideo = $trick_form->get('mediaVideo')->getData();
+            if($mediaVideo !== null) {
+                $mediaVideoPath = explode("\n", $mediaVideo);
+                foreach ($mediaVideoPath as $video){
+                    $newMediaVideo = new Media();
+                    $newMediaVideo->setSource($video); 
+                    $newMediaVideo->setType('video');
+                    $newMediaVideo->setTrick($trick);
+                    $newMediaVideo->setMain(false);
+                    $mediaRepository->add($newMediaVideo, true); 
+                }
+
             }
 
             $this->addFlash('success', 'Le nouveau trick a été ajouté !');
